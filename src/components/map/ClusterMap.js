@@ -7,8 +7,8 @@ import "./cluster.css";
 import { Avatar, Box, Paper, Tooltip } from "@mui/material";
 import GeocoderInput from "../sidebar/GeocoderInput";
 import PopupRoom from "./PopupRoom";
-import axios from "axios";
-import { options } from "../../utils/Api";
+
+// import { options } from "../../utils/Api";
 // import GeocoderInput from "../../";
 // import PopupRoom from "./PopupRoom";
 
@@ -31,7 +31,7 @@ const ClusterMap = () => {
 
   useEffect(() => {
     getRooms(dispatch);
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     const points = filteredRooms.map((room) => ({
@@ -65,7 +65,7 @@ console.log(points);
      if (mapRef.current) {
        setBounds(mapRef.current.getMap().getBounds().toArray().flat());
      }
-   }, [mapRef?.current]);
+   }, [mapRef]);
   // const api = async () => {
   //   try {
   //     const response = await axios.request(options);

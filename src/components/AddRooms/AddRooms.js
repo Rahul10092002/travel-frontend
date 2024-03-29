@@ -12,7 +12,7 @@ import AddImages from "../AddImages/AddImages";
 import AddDetails from "./AddDetails/AddDetails";
 import AddLocation from "./AddLocation/AddLocation";
 import { useValue } from "../../context/ContextProvider";
-import { Cancel, Send } from "@mui/icons-material";
+import {  Send } from "@mui/icons-material";
 import { createRoom } from "../../actions/room";
 
 const AddRooms = ({setPage}) => {
@@ -60,21 +60,21 @@ const AddRooms = ({setPage}) => {
     } else {
       if (steps[2].completed) setComplete(2, false);
     }
-  }, [images]);
+  }, [images,steps]);
   useEffect(() => {
     if (details?.title.length > 4 && details.description.length > 9) {
       if (!steps[1].completed) setComplete(1, true);
     } else {
       if (steps[1].completed) setComplete(1, false);
     }
-  }, [details]);
+  }, [details,steps]);
   useEffect(() => {
     if (location?.lng || location?.lat) {
       if (!steps[0].completed) setComplete(0, true);
     } else {
       if (steps[0].completed) setComplete(0, false);
     }
-  }, [location]);
+  }, [location,steps]);
   const setComplete = (index, status) => {
     setSteps((steps) => {
       steps[index].completed = status;
@@ -87,7 +87,7 @@ const AddRooms = ({setPage}) => {
     } else {
       if (showSubmit) setShowSubmit(false);
     }
-  }, [steps]);
+  }, [steps,findUnfinished,showSubmit]);
 
   const handleSubmit = () => {
     const room = {
